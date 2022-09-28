@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+
+  app:
+    build: .
+    environment:
+      STATIC_URL: http://localhost:3780/s
+    ports:
+      - 127.0.0.1:3780:80
+
+  web:
+    image: caddy:2.6.1-alpine
+    volumes:
+      - ./public:/usr/share/caddy
+    ports:
+      - 127.0.0.1:3700:80
