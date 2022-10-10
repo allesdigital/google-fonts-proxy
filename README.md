@@ -4,7 +4,7 @@
 $ docker compose up
 ```
 
-then visit http://localhost:3700
+then visit http://localhost:3700/~example/
 
 ## Comparison
 

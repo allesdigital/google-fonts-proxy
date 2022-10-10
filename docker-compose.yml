@@ -4,13 +4,8 @@ services:
   app:
     build: .
     environment:
-      STATIC_URL: http://localhost:3780/s
-    ports:
-      - 127.0.0.1:3780:80
-
-  web:
-    image: caddy:2.6.1-alpine
+      STATIC_URL: http://localhost:3700/s
     volumes:
-      - ./public:/usr/share/caddy
+      - ./public:/usr/local/apache2/htdocs
     ports:
       - 127.0.0.1:3700:80
