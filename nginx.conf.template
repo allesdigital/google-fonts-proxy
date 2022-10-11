@@ -1,0 +1,22 @@
+server {
+    listen      80;
+    listen [::]:80;
+
+    location /css {
+        proxy_set_header Accept-Encoding "";
+        proxy_pass https://fonts.googleapis.com;
+
+        sub_filter_types text/css;
+        sub_filter_once off;
+        sub_filter https://fonts.gstatic.com/s $STATIC_URL;
+    }
+
+    location /s {
+        proxy_pass https://fonts.gstatic.com;
+    }
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+    }
+}

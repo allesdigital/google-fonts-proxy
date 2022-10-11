@@ -20,3 +20,15 @@ services:
       - ./public:/usr/share/caddy
     ports:
       - 127.0.0.1:3701:80
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    environment:
+      STATIC_URL: http://localhost:3702/s
+    volumes:
+      - ./nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./public:/usr/share/nginx/html:ro
+    ports:
+      - 127.0.0.1:3702:80
