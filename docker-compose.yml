@@ -9,3 +9,14 @@ services:
       - ./public:/usr/local/apache2/htdocs
     ports:
       - 127.0.0.1:3700:80
+
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
+    environment:
+      STATIC_URL: http://localhost:3701/s
+    volumes:
+      - ./public:/usr/share/caddy
+    ports:
+      - 127.0.0.1:3701:80

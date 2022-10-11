@@ -1,0 +1,34 @@
+{
+	debug
+	order replace after encode
+}
+
+:80 {
+	handle /css* {
+		replace stream {
+			#"https://fonts.gstatic.com/" "http://local{http.reverse_proxy.upstream.hostport}host:3701/"
+			"https://fonts.gstatic.com/s" "{$STATIC_URL:???}"
+		}
+
+		reverse_proxy https://fonts.googleapis.com {
+			header_up Host {upstream_hostport}
+			header_up Accept-Encoding identity # don't gzip
+			header_up -X-Forwarded-For
+			header_up -X-Forwarded-Proto
+			header_up -X-Forwarded-Host
+			header_down -Server
+		}
+	}
+
+	handle /s* {
+		reverse_proxy https://fonts.gstatic.com {
+			header_up Host {upstream_hostport}
+			header_down -Server
+		}
+	}
+
+	handle {
+		root * /usr/share/caddy
+		file_server
+	}
+}
