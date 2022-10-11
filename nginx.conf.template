@@ -8,7 +8,7 @@ server {
 
         sub_filter_types text/css;
         sub_filter_once off;
-        sub_filter https://fonts.gstatic.com/s $STATIC_URL;
+        sub_filter https://fonts.gstatic.com "";
     }
 
     location /s {

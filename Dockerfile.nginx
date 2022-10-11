@@ -3,6 +3,4 @@ FROM nginx:1.23.1-alpine
 ADD nginx.conf.template /etc/nginx/templates/default.conf.template
 ADD public/ /usr/share/nginx/html/
 
-ENV STATIC_URL "\$scheme://\$host:\$server_port/s"
-
 EXPOSE 80

@@ -14,8 +14,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.caddy
-    environment:
-      STATIC_URL: http://localhost:3701/s
     volumes:
       - ./public:/usr/share/caddy
     ports:
@@ -25,8 +23,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.nginx
-    environment:
-      STATIC_URL: http://localhost:3702/s
     volumes:
       - ./nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
       - ./public:/usr/share/nginx/html:ro

@@ -6,8 +6,7 @@
 :80 {
 	handle /css* {
 		replace stream {
-			#"https://fonts.gstatic.com/" "http://local{http.reverse_proxy.upstream.hostport}host:3701/"
-			"https://fonts.gstatic.com/s" "{$STATIC_URL:???}"
+			"https://fonts.gstatic.com" ""
 		}
 
 		reverse_proxy https://fonts.googleapis.com {
